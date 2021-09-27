@@ -61,9 +61,9 @@ public class Nve18 extends Symbol {
         readable = code128.readable;
         pattern = code128.pattern;
         row_count = code128.row_count;
-        row_height = code128.row_height;
-        symbol_height = code128.symbol_height;
-        symbol_width = code128.symbol_width;
+        rowHeight = code128.rowHeight;
+        symbolHeight = code128.symbolHeight;
+        symbolWidth = code128.symbolWidth;
         rectangles = code128.rectangles;
         texts = code128.texts;
 

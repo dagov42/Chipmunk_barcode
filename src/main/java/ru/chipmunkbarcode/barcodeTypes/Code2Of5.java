@@ -168,7 +168,7 @@ public class Code2Of5 extends Symbol {
         readable = content;
         pattern = new String[]{dest};
         row_count = 1;
-        row_height = new int[]{-1};
+        rowHeight = new int[]{-1};
     }
 
     private void industrial() {
@@ -186,7 +186,7 @@ public class Code2Of5 extends Symbol {
         readable = content;
         pattern = new String[]{dest};
         row_count = 1;
-        row_height = new int[]{-1};
+        rowHeight = new int[]{-1};
     }
 
     private void iata() {
@@ -204,7 +204,7 @@ public class Code2Of5 extends Symbol {
         readable = content;
         pattern = new String[]{dest};
         row_count = 1;
-        row_height = new int[]{-1};
+        rowHeight = new int[]{-1};
     }
 
     private void dataLogic() {
@@ -222,7 +222,7 @@ public class Code2Of5 extends Symbol {
         readable = content;
         pattern = new String[]{dest};
         row_count = 1;
-        row_height = new int[]{-1};
+        rowHeight = new int[]{-1};
     }
 
     private void interleaved(boolean addCheckDigit) {
@@ -253,7 +253,7 @@ public class Code2Of5 extends Symbol {
 
         pattern = new String[]{dest};
         row_count = 1;
-        row_height = new int[]{-1};
+        rowHeight = new int[]{-1};
     }
 
     private String interlace(int x, int y) {
@@ -303,7 +303,7 @@ public class Code2Of5 extends Symbol {
 
         pattern = new String[]{dest};
         row_count = 1;
-        row_height = new int[]{-1};
+        rowHeight = new int[]{-1};
     }
 
     private void deutschePostLeitcode() {
@@ -337,7 +337,7 @@ public class Code2Of5 extends Symbol {
 
         pattern = new String[]{dest};
         row_count = 1;
-        row_height = new int[]{-1};
+        rowHeight = new int[]{-1};
     }
 
     private void deutschePostIdentcode() {
@@ -371,7 +371,7 @@ public class Code2Of5 extends Symbol {
 
         pattern = new String[]{dest};
         row_count = 1;
-        row_height = new int[]{-1};
+        rowHeight = new int[]{-1};
     }
 
     private static char checkDigit(String s, int multiplier1, int multiplier2) {
@@ -415,29 +415,29 @@ public class Code2Of5 extends Symbol {
             char c = pattern[0].charAt(xBlock);
             double w = getModuleWidth(c - '0') * moduleWidth;
             if (black) {
-                if (row_height[0] == -1) {
-                    h = default_height;
+                if (rowHeight[0] == -1) {
+                    h = defaultHeight;
                 } else {
-                    h = row_height[0];
+                    h = rowHeight[0];
                 }
                 if (w != 0 && h != 0) {
                     Rectangle2D.Double rect = new Rectangle2D.Double(x + offset, y, w, h);
                     rectangles.add(rect);
                 }
-                symbol_width = (int) Math.ceil(x + w + (2 * offset));
+                symbolWidth = (int) Math.ceil(x + w + (2 * offset));
             }
             black = !black;
             x += w;
         }
 
-        symbol_height = h;
+        symbolHeight = h;
 
         if (mode == ToFMode.ITF14) {
             // Add bounding box
-            Rectangle2D.Double topBar = new Rectangle2D.Double(0, baseY, symbol_width, 4);
-            Rectangle2D.Double bottomBar = new Rectangle2D.Double(0, baseY + symbol_height - 4, symbol_width, 4);
-            Rectangle2D.Double leftBar = new Rectangle2D.Double(0, baseY, 4, symbol_height);
-            Rectangle2D.Double rightBar = new Rectangle2D.Double(symbol_width - 4, baseY, 4, symbol_height);
+            Rectangle2D.Double topBar = new Rectangle2D.Double(0, baseY, symbolWidth, 4);
+            Rectangle2D.Double bottomBar = new Rectangle2D.Double(0, baseY + symbolHeight - 4, symbolWidth, 4);
+            Rectangle2D.Double leftBar = new Rectangle2D.Double(0, baseY, 4, symbolHeight);
+            Rectangle2D.Double rightBar = new Rectangle2D.Double(symbolWidth - 4, baseY, 4, symbolHeight);
             rectangles.add(topBar);
             rectangles.add(bottomBar);
             rectangles.add(leftBar);
@@ -449,9 +449,9 @@ public class Code2Of5 extends Symbol {
             if (humanReadableLocation == TOP) {
                 baseline = fontSize;
             } else {
-                baseline = symbol_height + fontSize;
+                baseline = symbolHeight + fontSize;
             }
-            texts.add(new TextBox(0, baseline, symbol_width, readable, humanReadableAlignment));
+            texts.add(new TextBox(0, baseline, symbolWidth, readable, humanReadableAlignment));
         }
     }
 

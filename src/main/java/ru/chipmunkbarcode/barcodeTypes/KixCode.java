@@ -53,7 +53,7 @@ public class KixCode extends Symbol {
         readable = "";
         pattern = new String[] { dest };
         row_count = 1;
-        row_height = new int[] { -1 };
+        rowHeight = new int[] { -1 };
     }
 
     @Override
@@ -91,7 +91,7 @@ public class KixCode extends Symbol {
             rectangles.add(new Rectangle2D.Double(x, y, w, h));
             x += 2;
         }
-        symbol_width = ((pattern[0].length() - 1) * 2) + 1; // final bar doesn't need extra whitespace
-        symbol_height = 8;
+        symbolWidth = ((pattern[0].length() - 1) * 2) + 1; // final bar doesn't need extra whitespace
+        symbolHeight = 8;
     }
 }

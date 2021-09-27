@@ -133,7 +133,7 @@ public class Code93 extends Symbol {
         infoLine("Check Digit K: " + k);
         pattern = new String[] { toPattern(values) };
         row_count = 1;
-        row_height = new int[] { -1 };
+        rowHeight = new int[] { -1 };
     }
 
     private static char[] toControlChars(String s) {

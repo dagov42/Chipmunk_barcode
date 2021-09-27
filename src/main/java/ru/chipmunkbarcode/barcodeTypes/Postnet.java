@@ -13,7 +13,6 @@ import static ru.chipmunkbarcode.barcodeTypes.HumanReadableLocation.TOP;
  * bar code symbologies.
  *
  * <p>POSTNET and PLANET both use numerical input data and include a modulo-10 check digit.
- *
  */
 public class Postnet extends Symbol {
 
@@ -22,11 +21,11 @@ public class Postnet extends Symbol {
     }
 
     private static final String[] PN_TABLE = {
-        "LLSSS", "SSSLL", "SSLSL", "SSLLS", "SLSSL", "SLSLS", "SLLSS", "LSSSL", "LSSLS", "LSLSS"
+            "LLSSS", "SSSLL", "SSLSL", "SSLLS", "SLSSL", "SLSLS", "SLLSS", "LSSSL", "LSSLS", "LSLSS"
     };
 
     private static final String[] PL_TABLE = {
-        "SSLLL", "LLLSS", "LLSLS", "LLSSL", "LSLLS", "LSLSL", "LSSLL", "SLLLS", "SLLSL", "SLSLL"
+            "SSLLL", "LLLSS", "LLSLS", "LLSSL", "LSLLS", "LSLSL", "LSSLL", "SLLLS", "SLLSL", "SLSLL"
     };
 
     private Mode mode;
@@ -35,7 +34,7 @@ public class Postnet extends Symbol {
     public Postnet() {
         this.mode = Mode.POSTNET;
         this.moduleWidthRatio = 1.5;
-        this.default_height = 12;
+        this.defaultHeight = 12;
         this.humanReadableLocation = HumanReadableLocation.NONE;
     }
 
@@ -109,9 +108,9 @@ public class Postnet extends Symbol {
 
         infoLine("Encoding: " + dest);
         readable = content;
-        pattern = new String[] { dest };
+        pattern = new String[]{dest};
         row_count = 1;
-        row_height = new int[] { -1 };
+        rowHeight = new int[]{-1};
     }
 
     @Override
@@ -132,30 +131,30 @@ public class Postnet extends Symbol {
         x = 0;
         w = moduleWidth;
         dx = (1 + moduleWidthRatio) * w;
-        shortHeight = (int) (0.4 * default_height);
+        shortHeight = (int) (0.4 * defaultHeight);
         for (xBlock = 0; xBlock < pattern[0].length(); xBlock++) {
             if (pattern[0].charAt(xBlock) == 'L') {
                 y = baseY;
-                h = default_height;
+                h = defaultHeight;
             } else {
-                y = baseY + default_height - shortHeight;
+                y = baseY + defaultHeight - shortHeight;
                 h = shortHeight;
             }
             rectangles.add(new Rectangle2D.Double(x, y, w, h));
             x += dx;
         }
 
-        symbol_width = (int) Math.ceil(((pattern[0].length() - 1) * dx) + w); // final bar doesn't need extra whitespace
-        symbol_height = default_height;
+        symbolWidth = (int) Math.ceil(((pattern[0].length() - 1) * dx) + w); // final bar doesn't need extra whitespace
+        symbolHeight = defaultHeight;
 
         if (humanReadableLocation != NONE && !readable.isEmpty()) {
             double baseline;
             if (humanReadableLocation == TOP) {
                 baseline = fontSize;
             } else {
-                baseline = symbol_height + fontSize;
+                baseline = symbolHeight + fontSize;
             }
-            texts.add(new TextBox(0, baseline, symbol_width, readable, humanReadableAlignment));
+            texts.add(new TextBox(0, baseline, symbolWidth, readable, humanReadableAlignment));
         }
     }
 }

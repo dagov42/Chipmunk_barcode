@@ -194,7 +194,7 @@ public class CodablockF extends Symbol {
         readable = "";
         row_count = rows_needed;
         pattern = new String[row_count];
-        row_height = new int[row_count];
+        rowHeight = new int[row_count];
 
         infoLine("Grid Size: " + columns_needed + " X " + rows_needed);
         infoLine("K1 Check Digit: " + k1_check);
@@ -238,11 +238,11 @@ public class CodablockF extends Symbol {
 
             /* Write the information into the symbol */
             pattern[i] = row_pattern;
-            row_height[i] = 15;
+            rowHeight[i] = 15;
         }
         infoLine();
 
-        symbol_height = rows_needed * 15;
+        symbolHeight = rows_needed * 15;
     }
 
     private Mode findSubset(int letter) {
@@ -803,17 +803,17 @@ public class CodablockF extends Symbol {
                 if (black) {
                     black = false;
                     w = pattern[yBlock].charAt(xBlock) - '0';
-                    if (row_height[yBlock] == -1) {
-                        h = default_height;
+                    if (rowHeight[yBlock] == -1) {
+                        h = defaultHeight;
                     } else {
-                        h = row_height[yBlock];
+                        h = rowHeight[yBlock];
                     }
                     if (w != 0 && h != 0) {
                         Rectangle2D.Double rect = new Rectangle2D.Double(x, y, w, h);
                         rectangles.add(rect);
                     }
-                    if ((x + w) > symbol_width) {
-                        symbol_width = x + w;
+                    if ((x + w) > symbolWidth) {
+                        symbolWidth = x + w;
                     }
                 } else {
                     black = true;
@@ -821,21 +821,21 @@ public class CodablockF extends Symbol {
                 x += pattern[yBlock].charAt(xBlock) - '0';
             }
             y += h;
-            if (y > symbol_height) {
-                symbol_height = y;
+            if (y > symbolHeight) {
+                symbolHeight = y;
             }
             /* Add bars between rows */
             if (yBlock != (row_count - 1)) {
-                Rectangle2D.Double rect = new Rectangle2D.Double(11, y - 1, (symbol_width - 24), 2);
+                Rectangle2D.Double rect = new Rectangle2D.Double(11, y - 1, (symbolWidth - 24), 2);
                 rectangles.add(rect);
             }
         }
 
         /* Add top and bottom binding bars */
-        Rectangle2D.Double top = new Rectangle2D.Double(0, 0, symbol_width, 2);
+        Rectangle2D.Double top = new Rectangle2D.Double(0, 0, symbolWidth, 2);
         rectangles.add(top);
-        Rectangle2D.Double bottom = new Rectangle2D.Double(0, y - 1, symbol_width, 2);
+        Rectangle2D.Double bottom = new Rectangle2D.Double(0, y - 1, symbolWidth, 2);
         rectangles.add(bottom);
-        symbol_height += 1;
+        symbolHeight += 1;
     }
 }

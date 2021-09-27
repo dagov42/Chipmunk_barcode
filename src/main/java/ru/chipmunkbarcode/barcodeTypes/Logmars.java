@@ -99,6 +99,6 @@ public class Logmars extends Symbol {
         readable = content + checkDigit;
         pattern = new String[]{"1311313111" + p + "131131311"};
         row_count = 1;
-        row_height = new int[]{-1};
+        rowHeight = new int[]{-1};
     }
 }

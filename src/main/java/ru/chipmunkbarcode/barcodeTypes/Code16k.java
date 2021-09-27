@@ -517,7 +517,7 @@ public class Code16k extends Symbol {
         readable = "";
         pattern = new String[rows_needed];
         row_count = rows_needed;
-        row_height = new int[rows_needed];
+        rowHeight = new int[rows_needed];
 
         infoLine("Symbol Rows: " + rows_needed);
         infoLine("First Check Digit: " + first_check);
@@ -536,7 +536,7 @@ public class Code16k extends Symbol {
             width_pattern += C16K_START_STOP[C16K_STOP_VALUES[current_row]];
 
             pattern[current_row] = width_pattern;
-            row_height[current_row] = 10;
+            rowHeight[current_row] = 10;
         }
         infoLine();
     }
@@ -735,17 +735,17 @@ public class Code16k extends Symbol {
                 if (black) {
                     black = false;
                     w = pattern[yBlock].charAt(xBlock) - '0';
-                    if (row_height[yBlock] == -1) {
-                        h = default_height;
+                    if (rowHeight[yBlock] == -1) {
+                        h = defaultHeight;
                     } else {
-                        h = row_height[yBlock];
+                        h = rowHeight[yBlock];
                     }
                     if (w != 0 && h != 0) {
                         Rectangle2D.Double rect = new Rectangle2D.Double(x, y, w, h);
                         rectangles.add(rect);
                     }
-                    if ((x + w) > symbol_width) {
-                        symbol_width = x + w;
+                    if ((x + w) > symbolWidth) {
+                        symbolWidth = x + w;
                     }
                 } else {
                     black = true;
@@ -753,22 +753,22 @@ public class Code16k extends Symbol {
                 x += pattern[yBlock].charAt(xBlock) - '0';
             }
             y += h;
-            if (y > symbol_height) {
-                symbol_height = y;
+            if (y > symbolHeight) {
+                symbolHeight = y;
             }
             /* Add bars between rows */
             if (yBlock != (row_count - 1)) {
-                Rectangle2D.Double rect = new Rectangle2D.Double(15, y - 1, (symbol_width - 15), 2);
+                Rectangle2D.Double rect = new Rectangle2D.Double(15, y - 1, (symbolWidth - 15), 2);
                 rectangles.add(rect);
             }
         }
 
         /* Add top and bottom binding bars */
-        Rectangle2D.Double top = new Rectangle2D.Double(0, 0, (symbol_width + 15), 2);
+        Rectangle2D.Double top = new Rectangle2D.Double(0, 0, (symbolWidth + 15), 2);
         rectangles.add(top);
-        Rectangle2D.Double bottom = new Rectangle2D.Double(0, y - 1, (symbol_width + 15), 2);
+        Rectangle2D.Double bottom = new Rectangle2D.Double(0, y - 1, (symbolWidth + 15), 2);
         rectangles.add(bottom);
-        symbol_width += 15;
-        symbol_height += 1;
+        symbolWidth += 15;
+        symbolHeight += 1;
     }
 }

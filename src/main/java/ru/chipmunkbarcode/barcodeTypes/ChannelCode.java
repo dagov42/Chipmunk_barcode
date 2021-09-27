@@ -113,7 +113,7 @@ public class ChannelCode extends Symbol {
         readable += content;
 
         row_count = 1;
-        row_height = new int[]{-1};
+        rowHeight = new int[]{-1};
     }
 
     private void nextSpace(int channels, int i, int maxSpace, int maxBar) {

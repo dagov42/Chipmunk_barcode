@@ -354,7 +354,7 @@ public class MaxiCode extends Symbol {
         row_count = 33;
         readable = "";
         pattern = new String[33];
-        row_height = new int[33];
+        rowHeight = new int[33];
         for (int i = 0; i < 33; i++) {
             StringBuilder bin = new StringBuilder(30);
             for (int j = 0; j < 30; j++) {
@@ -365,10 +365,10 @@ public class MaxiCode extends Symbol {
                 }
             }
             pattern[i] = bin2pat(bin);
-            row_height[i] = 1;
+            rowHeight[i] = 1;
         }
-        symbol_height = 72;
-        symbol_width = 74;
+        symbolHeight = 72;
+        symbolWidth = 74;
     }
 
     /**

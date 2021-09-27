@@ -61,8 +61,8 @@ public class UspsPackage extends Symbol {
         pattern = new String[1];
         pattern[0] = code128.pattern[0];
         row_count = 1;
-        row_height = new int[1];
-        row_height[0] = -1;
+        rowHeight = new int[1];
+        rowHeight[0] = -1;
     }
 
     @Override
@@ -83,30 +83,30 @@ public class UspsPackage extends Symbol {
         for (xBlock = 0; xBlock < pattern[0].length(); xBlock++) {
             w = pattern[0].charAt(xBlock) - '0';
             if (black) {
-                if (row_height[0] == -1) {
-                    h = default_height;
+                if (rowHeight[0] == -1) {
+                    h = defaultHeight;
                 } else {
-                    h = row_height[0];
+                    h = rowHeight[0];
                 }
                 if (w != 0 && h != 0) {
                     Rectangle2D.Double rect = new Rectangle2D.Double(x + offset, y, w, h);
                     rectangles.add(rect);
                 }
-                symbol_width = x + w + (2 * offset);
+                symbolWidth = x + w + (2 * offset);
             }
             black = !black;
             x += w;
         }
-        symbol_height = h + (2 * yoffset);
+        symbolHeight = h + (2 * yoffset);
 
         // Add boundary bars
-        Rectangle2D.Double topBar = new Rectangle2D.Double(0, 0, symbol_width, 2);
-        Rectangle2D.Double bottomBar = new Rectangle2D.Double(0, symbol_height - 2, symbol_width, 2);
+        Rectangle2D.Double topBar = new Rectangle2D.Double(0, 0, symbolWidth, 2);
+        Rectangle2D.Double bottomBar = new Rectangle2D.Double(0, symbolHeight - 2, symbolWidth, 2);
         rectangles.add(topBar);
         rectangles.add(bottomBar);
 
-        texts.add(new TextBox(0, symbol_height - 6.0, symbol_width, readable, humanReadableAlignment));
-        texts.add(new TextBox(0, 12.0, symbol_width, banner, humanReadableAlignment));
+        texts.add(new TextBox(0, symbolHeight - 6.0, symbolWidth, readable, humanReadableAlignment));
+        texts.add(new TextBox(0, 12.0, symbolWidth, banner, humanReadableAlignment));
     }
 
     /**

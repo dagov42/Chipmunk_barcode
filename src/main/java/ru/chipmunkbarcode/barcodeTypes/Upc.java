@@ -170,7 +170,7 @@ public class Upc extends Symbol {
             addOn.fontSize = this.fontSize;
             addOn.humanReadableLocation = (this.humanReadableLocation == NONE ? NONE : TOP);
             addOn.moduleWidth = this.moduleWidth;
-            addOn.default_height = this.default_height + this.guardPatternExtraHeight - 8;
+            addOn.defaultHeight = this.defaultHeight + this.guardPatternExtraHeight - 8;
             addOn.setContent(content.substring(splitPoint + 1));
             content = content.substring(0, splitPoint);
         }
@@ -197,7 +197,7 @@ public class Upc extends Symbol {
         readable = hrt;
         pattern = new String[]{dest.toString()};
         row_count = 1;
-        row_height = new int[]{-1};
+        rowHeight = new int[]{-1};
     }
 
     private void upce() {
@@ -229,7 +229,7 @@ public class Upc extends Symbol {
         readable = hrt;
         pattern = new String[]{dest.toString()};
         row_count = 1;
-        row_height = new int[]{-1};
+        rowHeight = new int[]{-1};
     }
 
     /**
@@ -326,7 +326,7 @@ public class Upc extends Symbol {
 
             if (black) {
                 y = 0;
-                h = default_height;
+                h = defaultHeight;
                 /* Add extension to guide bars */
                 if (mode == Mode.UPCA) {
                     if (x < 10 || x > 84 || (x > 45 && x < 49)) {
@@ -347,8 +347,8 @@ public class Upc extends Symbol {
                 }
                 Rectangle2D.Double rect = new Rectangle2D.Double(scale(x), y + compositeOffset + hrtOffset, scale(w), h);
                 rectangles.add(rect);
-                symbol_width = Math.max(symbol_width, (int) rect.getMaxX());
-                symbol_height = Math.max(symbol_height, (int) rect.getHeight());
+                symbolWidth = Math.max(symbolWidth, (int) rect.getMaxX());
+                symbolHeight = Math.max(symbolHeight, (int) rect.getHeight());
             }
 
             black = !black;
@@ -368,13 +368,13 @@ public class Upc extends Symbol {
                 rectangles.add(new Rectangle2D.Double(scale(-1), 2, scale(1), 2));
                 rectangles.add(new Rectangle2D.Double(scale(51), 2, scale(1), 2));
             }
-            symbol_height += 4;
+            symbolHeight += 4;
         }
 
         /* Now add the text */
         if (humanReadableLocation == BOTTOM) {
-            symbol_height -= guardPatternExtraHeight;
-            double baseline = symbol_height + fontSize;
+            symbolHeight -= guardPatternExtraHeight;
+            double baseline = symbolHeight + fontSize;
             if (mode == Mode.UPCA) {
                 texts.add(new TextBox(scale(-9), baseline, scale(4), readable.substring(0, 1), HumanReadableAlignment.RIGHT));
                 texts.add(new TextBox(scale(12), baseline, scale(32), readable.substring(1, 6), humanReadableAlignment));
@@ -398,7 +398,7 @@ public class Upc extends Symbol {
         /* Now add the add-on symbol, if necessary */
         if (addOn != null) {
             int gap = 9;
-            int baseX = symbol_width + scale(gap);
+            int baseX = symbolWidth + scale(gap);
             Rectangle2D.Double r1 = rectangles.get(0);
             Rectangle2D.Double ar1 = addOn.rectangles.get(0);
             int baseY = (int) (r1.y + r1.getHeight() - ar1.y - ar1.getHeight());
@@ -408,7 +408,7 @@ public class Upc extends Symbol {
             for (Rectangle2D.Double r : addOn.getRectangles()) {
                 rectangles.add(new Rectangle2D.Double(baseX + r.x, baseY + r.y, r.width, r.height));
             }
-            symbol_width += scale(gap) + addOn.symbol_width;
+            symbolWidth += scale(gap) + addOn.symbolWidth;
             pattern[0] = pattern[0] + gap + addOn.pattern[0];
         }
     }

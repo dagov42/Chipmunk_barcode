@@ -639,8 +639,8 @@ public class AztecCode extends Symbol {
 
             readable = "";
             row_count = 27 - (2 * AZTEC_COMPACT_OFFSET[layers - 1]);
-            row_height = new int[row_count];
-            row_height[0] = -1;
+            rowHeight = new int[row_count];
+            rowHeight[0] = -1;
             pattern = new String[row_count];
             for (int y = AZTEC_COMPACT_OFFSET[layers - 1]; y < (27 - AZTEC_COMPACT_OFFSET[layers - 1]); y++) {
                 StringBuilder bin = new StringBuilder(27);
@@ -664,7 +664,7 @@ public class AztecCode extends Symbol {
                         }
                     }
                 }
-                row_height[y - AZTEC_COMPACT_OFFSET[layers - 1]] = 1;
+                rowHeight[y - AZTEC_COMPACT_OFFSET[layers - 1]] = 1;
                 pattern[y - AZTEC_COMPACT_OFFSET[layers - 1]] = bin2pat(bin);
             }
 
@@ -672,8 +672,8 @@ public class AztecCode extends Symbol {
 
             readable = "";
             row_count = 151 - (2 * AZTEC_OFFSET[layers - 1]);
-            row_height = new int[row_count];
-            row_height[0] = -1;
+            rowHeight = new int[row_count];
+            rowHeight[0] = -1;
             pattern = new String[row_count];
             for (int y = AZTEC_OFFSET[layers - 1]; y < (151 - AZTEC_OFFSET[layers - 1]); y++) {
                 StringBuilder bin = new StringBuilder(151);
@@ -697,7 +697,7 @@ public class AztecCode extends Symbol {
                         }
                     }
                 }
-                row_height[y - AZTEC_OFFSET[layers - 1]] = 1;
+                rowHeight[y - AZTEC_OFFSET[layers - 1]] = 1;
                 pattern[y - AZTEC_OFFSET[layers - 1]] = bin2pat(bin);
             }
         }

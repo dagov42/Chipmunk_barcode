@@ -585,12 +585,12 @@ public class Code128 extends Symbol {
 
         if (compositeMode == Composite.OFF) {
             pattern = new String[]{dest.toString()};
-            row_height = new int[]{-1};
+            rowHeight = new int[]{-1};
             row_count = 1;
         } else {
             /* Add the separator pattern for composite symbols */
             pattern = new String[]{"0" + dest, dest.toString()};
-            row_height = new int[]{1, -1};
+            rowHeight = new int[]{1, -1};
             row_count = 2;
         }
     }

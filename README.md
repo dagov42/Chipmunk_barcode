@@ -1,10 +1,12 @@
+![logo](chipmunk.jpg)
 # Chipmunk Barcode 
-Chipmunk Barcode is an open-source barcode generator written entirely in Java,
-supporting over 50 encoding standards, including all ISO and GS1 standards. Chipmunk
+Chipmunk Barcode is an open-source barcode generator, supporting over 50 encoding standards, including all ISO and GS1 standards. Chipmunk
 Barcode is based on [Okapi Barcode](https://github.com/woo-j/OkapiBarcode) and [Zint](https://sourceforge.net/projects/zint/) an
 open-source barcode encoding library developed in C, and builds on the years
-of work that have been invested in that project. GS1 formatter library based on [GS1 utils](https://github.com/tmattsson/gs1utils)
-that is Java library for GS1 data structures commonly used in barcodes, such as GTIN, GLN, SSCC and element strings. Provides methods for validation and conversion between different length GTINs.
+of work have been invested in that project. GS1 formatter library based on [GS1 utils](https://github.com/tmattsson/gs1utils)
+that is Java library for GS1 data structures commonly used in barcodes, such as GTIN, GLN, SSCC and element strings.
+Provides methods for validation and conversion between different length GTINs.
+Input GS1 code string might formatted as GS1 or not, output image would have formatted by standard.
 
 ### Supported Symbologies
 
@@ -20,6 +22,7 @@ that is Java library for GS1 data structures commonly used in barcodes, such as 
 * [Codablock F](src/main/java/ru/chipmunkbarcode/barcodeTypes/CodablockF.java)
 * [Code 11](src/main/java/ru/chipmunkbarcode/barcodeTypes/Code11.java)
 * [Code 128](src/main/java/ru/chipmunkbarcode/barcodeTypes/Code128.java)
+  * Code 128 GS1
 * [Code 16k](src/main/java/ru/chipmunkbarcode/barcodeTypes/Code16k.java)
 * [Code 2 of 5](src/main/java/ru/chipmunkbarcode/barcodeTypes/Code2Of5.java) variants:
   * Matrix 2 of 5
@@ -37,12 +40,13 @@ that is Java library for GS1 data structures commonly used in barcodes, such as 
 * [Code 93](src/main/java/ru/chipmunkbarcode/barcodeTypes/Code93.java)
 * [Code One](src/main/java/ru/chipmunkbarcode/barcodeTypes/CodeOne.java)
 * [Composite](src/main/java/ru/chipmunkbarcode/barcodeTypes/Composite.java)
-* [Data Matrix](src/main/java/ru/chipmunkbarcode/barcodeTypes/DataMatrix.java)
 * [Dutch Post KIX Code](src/main/java/ru/chipmunkbarcode/barcodeTypes/KixCode.java)
 * [EAN](src/main/java/ru/chipmunkbarcode/barcodeTypes/Ean.java) variants:
   * EAN-13
   * EAN-8
 * [Grid Matrix](src/main/java/ru/chipmunkbarcode/barcodeTypes/GridMatrix.java)
+* [Data Matrix](src/main/java/ru/chipmunkbarcode/barcodeTypes/DataMatrix.java)
+  * GS1 Data Matrix
 * [GS1 DataBar](src/main/java/ru/chipmunkbarcode/barcodeTypes/DataBar14.java) variants:
   * GS1 DataBar
   * GS1 DataBar Stacked
@@ -93,7 +97,7 @@ barcode.setFontSize(16);
 barcode.setModuleWidth(2);
 barcode.setBarHeight(50);
 barcode.setHumanReadableLocation(HumanReadableLocation.BOTTOM);
-barcode.setContent("123456789");
+barcode.setContent("123456789"); // Terminal operation of the object
 
 int width = barcode.getWidth();
 int height = barcode.getHeight();

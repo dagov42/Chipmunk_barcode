@@ -187,6 +187,6 @@ public class MsiPlessey extends Symbol {
 
         pattern = new String[] { intermediate };
         row_count = 1;
-        row_height = new int[] { -1 };
+        rowHeight = new int[] { -1 };
     }
 }

@@ -163,7 +163,7 @@ public class Code11 extends Symbol {
 
         pattern = new String[]{horizontalSpacing};
         row_count = 1;
-        row_height = new int[]{-1};
+        rowHeight = new int[]{-1};
     }
 
     private static int getCheckDigitC(int[] weight, int length) {

@@ -65,7 +65,7 @@ public class Code3Of9Extended extends Symbol {
         pattern = new String[1];
         pattern[0] = c.pattern[0];
         row_count = 1;
-        row_height = new int[1];
-        row_height[0] = -1;
+        rowHeight = new int[1];
+        rowHeight[0] = -1;
     }
 }

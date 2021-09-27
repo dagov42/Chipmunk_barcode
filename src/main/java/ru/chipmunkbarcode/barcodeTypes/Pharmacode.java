@@ -58,7 +58,7 @@ public class Pharmacode extends Symbol {
         pattern = new String[1];
         pattern[0] = dest;
         row_count = 1;
-        row_height = new int[1];
-        row_height[0] = -1;
+        rowHeight = new int[1];
+        rowHeight[0] = -1;
     }
 }

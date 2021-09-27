@@ -47,7 +47,6 @@ public class Java2DRenderer implements SymbolRenderer {
      * existing {@code g2d} background.
      *
      * @param g2d           the graphics to render to
-     * @param magnification the magnification factor to apply
      * @param paper         the paper (background) color (may be {@code null})
      * @param ink           the ink (foreground) color
      */

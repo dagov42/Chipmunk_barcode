@@ -760,18 +760,18 @@ public class Composite extends Symbol {
         linear.setContent(linearContent);
 
         if (symbology == LinearEncoding.CODE_128) {
-            linearWidth = linear.symbol_width;
+            linearWidth = linear.symbolWidth;
             if (cc_mode == CompositeMode.CC_C) {
                 /* Width of composite component depends on width of linear component, so recalculate. */
                 row_count = 0;
                 rectangles.clear();
-                symbol_height = 0;
-                symbol_width = 0;
+                symbolHeight = 0;
+                symbolWidth = 0;
                 encodeInfo.setLength(0);
                 encodeComposite();
             } else {
-                if (linearWidth > symbol_width) {
-                    top_shift = (linearWidth - symbol_width) / 2;
+                if (linearWidth > symbolWidth) {
+                    top_shift = (linearWidth - symbolWidth) / 2;
                 }
             }
         }
@@ -788,11 +788,11 @@ public class Composite extends Symbol {
         for (Rectangle2D.Double orig : linear.rectangles) {
             double h = orig.height + (extraSepHeight > 0 && orig.height == 1 ? extraSepHeight : 0);
             double y = orig.y + (extraSepHeight > 0 && orig.height != 1 ? extraSepHeight : 0);
-            combine_rect.add(new Rectangle2D.Double(orig.x + bottom_shift, y + symbol_height, orig.width, h));
+            combine_rect.add(new Rectangle2D.Double(orig.x + bottom_shift, y + symbolHeight, orig.width, h));
         }
 
         for (TextBox orig : linear.texts) {
-            combine_txt.add(new TextBox(orig.x + bottom_shift, orig.y + symbol_height + extraSepHeight, orig.width, orig.text, humanReadableAlignment));
+            combine_txt.add(new TextBox(orig.x + bottom_shift, orig.y + symbolHeight + extraSepHeight, orig.width, orig.text, humanReadableAlignment));
         }
 
         int max_x = 0;
@@ -804,8 +804,8 @@ public class Composite extends Symbol {
 
         rectangles = combine_rect;
         texts = combine_txt;
-        symbol_height += linear.symbol_height + extraSepHeight;
-        symbol_width = max_x;
+        symbolHeight += linear.symbolHeight + extraSepHeight;
+        symbolWidth = max_x;
         info(linear.getEncodeInfo());
     }
 
@@ -2139,7 +2139,7 @@ public class Composite extends Symbol {
         readable = "";
         row_count = rows;
         pattern = new String[row_count];
-        row_height = new int[row_count];
+        rowHeight = new int[row_count];
 
         for (i = 0; i < rows; i++) {
             codebarre = "";
@@ -2204,7 +2204,7 @@ public class Composite extends Symbol {
                 }
             }
 
-            row_height[i] = 2;
+            rowHeight[i] = 2;
             pattern[i] = bin2pat(bin);
 
             /* Set up RAPs and Cluster for next row */
@@ -2480,7 +2480,7 @@ public class Composite extends Symbol {
         readable = "";
         row_count = rows;
         pattern = new String[row_count];
-        row_height = new int[row_count];
+        rowHeight = new int[row_count];
 
         for (i = 0; i < rows; i++) {
             codebarre = "";
@@ -2544,7 +2544,7 @@ public class Composite extends Symbol {
             }
 
             pattern[i] = bin2pat(bin);
-            row_height[i] = 2;
+            rowHeight[i] = 2;
 
             /* Set up RAPs and Cluster for next row */
             LeftRAP++;
@@ -2675,7 +2675,7 @@ public class Composite extends Symbol {
         readable = "";
         row_count = codeWordCount / cc_width;
         pattern = new String[row_count];
-        row_height = new int[row_count];
+        rowHeight = new int[row_count];
 
         /* we now encode each row */
         for (i = 0; i <= (codeWordCount / cc_width) - 1; i++) {
@@ -2727,7 +2727,7 @@ public class Composite extends Symbol {
                 bin.append(PDF_TTF[positionOf(codebarre.charAt(loop), BR_SET)]);
             }
             pattern[i] = bin2pat(bin);
-            row_height[i] = 3;
+            rowHeight[i] = 3;
         }
     }
 

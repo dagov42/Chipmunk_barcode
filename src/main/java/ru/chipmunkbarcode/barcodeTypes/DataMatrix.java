@@ -113,13 +113,13 @@ public class DataMatrix extends Symbol {
     // internal state calculated when setContent() is called
 
     private int actualSize = -1;
-    private int[] target = new int[2200];
-    private int[] binary = new int[2200];
+    private final int[] target = new int[2200];
+    private final int[] binary = new int[2200];
     private int binaryLength;
     private Mode lastMode;
     private int[] places;
     private int processP;
-    private int[] processBuffer = new int[8];
+    private final int[] processBuffer = new int[8];
     private int codewordCount;
 
     /**
@@ -417,7 +417,7 @@ public class DataMatrix extends Symbol {
         readable = "";
         pattern = new String[H];
         row_count = H;
-        row_height = new int[H];
+        rowHeight = new int[H];
         for (y = H - 1; y >= 0; y--) {
             bin.setLength(0);
             for (x = 0; x < W; x++) {
@@ -428,7 +428,7 @@ public class DataMatrix extends Symbol {
                 }
             }
             pattern[(H - y) - 1] = bin2pat(bin);
-            row_height[(H - y) - 1] = moduleWidth;
+            rowHeight[(H - y) - 1] = moduleWidth;
         }
 
         infoLine("Grid Size: " + W + " X " + H);
@@ -1447,8 +1447,8 @@ public class DataMatrix extends Symbol {
 
     private void insertAt(int pos, char newbit) {
         /* Insert a character into the middle of a string at position posn */
-        if (binaryLength - pos >= 0) {
-            System.arraycopy(binary, pos, binary, pos + 1, binaryLength - pos);
+        for (int i = binaryLength; i > pos; i--) {
+            binary[i] = binary[i - 1];
         }
         binary[pos] = newbit;
         binaryLength++;

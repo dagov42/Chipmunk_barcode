@@ -284,8 +284,8 @@ public class AustraliaPost extends Symbol {
         pattern = new String[1];
         pattern[0] = String.valueOf(barStateValues);
         row_count = 1;
-        row_height = new int[1];
-        row_height[0] = -1;
+        rowHeight = new int[1];
+        rowHeight[0] = -1;
     }
 
     private String calcReedSolomon(String oldBarStateValues) {
@@ -353,7 +353,7 @@ public class AustraliaPost extends Symbol {
             rectangles.add(rect);
             x += 2;
         }
-        symbol_width = ((pattern[0].length() - 1) * 2) + 1; // no whitespace needed after the final bar
-        symbol_height = 8;
+        symbolWidth = ((pattern[0].length() - 1) * 2) + 1; // no whitespace needed after the final bar
+        symbolHeight = 8;
     }
 }

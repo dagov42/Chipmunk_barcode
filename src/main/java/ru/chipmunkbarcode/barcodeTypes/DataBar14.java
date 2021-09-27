@@ -341,8 +341,8 @@ public class DataBar14 extends Symbol {
                     latch = '1';
                 }
             }
-            if (symbol_width < writer) {
-                symbol_width = writer;
+            if (symbolWidth < writer) {
+                symbolWidth = writer;
             }
 
             if (linkageFlag) {
@@ -481,8 +481,8 @@ public class DataBar14 extends Symbol {
                 }
             }
             row_count = row_count + 1;
-            if (symbol_width < 50) {
-                symbol_width = 50;
+            if (symbolWidth < 50) {
+                symbolWidth = 50;
             }
         }
 
@@ -567,8 +567,8 @@ public class DataBar14 extends Symbol {
                 }
             }
 
-            if (symbol_width < 50) {
-                symbol_width = 50;
+            if (symbolWidth < 50) {
+                symbolWidth = 50;
             }
             if (linkageFlag) {
                 /* separator pattern for composite symbol */
@@ -595,11 +595,11 @@ public class DataBar14 extends Symbol {
         }
 
         pattern = new String[row_count + compositeOffset];
-        row_height = new int[row_count + compositeOffset];
+        rowHeight = new int[row_count + compositeOffset];
 
         if (linkageFlag) {
             bin.setLength(0);
-            for (j = 0; j < symbol_width; j++) {
+            for (j = 0; j < symbolWidth; j++) {
                 if (separator[j]) {
                     bin.append('1');
                 } else {
@@ -607,12 +607,12 @@ public class DataBar14 extends Symbol {
                 }
             }
             pattern[0] = bin2pat(bin);
-            row_height[0] = 1;
+            rowHeight[0] = 1;
         }
 
         for (i = 0; i < row_count; i++) {
             bin.setLength(0);
-            for (j = 0; j < symbol_width; j++) {
+            for (j = 0; j < symbolWidth; j++) {
                 if (grid[i][j]) {
                     bin.append('1');
                 } else {
@@ -623,19 +623,19 @@ public class DataBar14 extends Symbol {
         }
 
         if (mode == Mode.LINEAR) {
-            row_height[0 + compositeOffset] = -1;
+            rowHeight[0 + compositeOffset] = -1;
         }
         if (mode == Mode.STACKED) {
-            row_height[0 + compositeOffset] = 5;
-            row_height[1 + compositeOffset] = separatorHeight;
-            row_height[2 + compositeOffset] = 7;
+            rowHeight[0 + compositeOffset] = 5;
+            rowHeight[1 + compositeOffset] = separatorHeight;
+            rowHeight[2 + compositeOffset] = 7;
         }
         if (mode == Mode.OMNI) {
-            row_height[0 + compositeOffset] = -1;
-            row_height[1 + compositeOffset] = separatorHeight;
-            row_height[2 + compositeOffset] = separatorHeight;
-            row_height[3 + compositeOffset] = separatorHeight;
-            row_height[4 + compositeOffset] = -1;
+            rowHeight[0 + compositeOffset] = -1;
+            rowHeight[1 + compositeOffset] = separatorHeight;
+            rowHeight[2 + compositeOffset] = separatorHeight;
+            rowHeight[3 + compositeOffset] = separatorHeight;
+            rowHeight[4 + compositeOffset] = -1;
         }
 
         if (linkageFlag) {
